@@ -12,7 +12,7 @@ export function useAuthLogin() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
     });
@@ -56,6 +56,7 @@ export function useAuthLogin() {
     return {
         submit,
         register,
-        errors
+        errors,
+        isSubmitting
     }
 }

@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { ButtonLink } from '../../../components/button-link';
 import { useAuthLogin } from '../hooks/login';
 import { toast } from 'react-toastify';
+import Progress from '../../../components/progress';
 
 function LoginForm() {
-    const { submit, errors, register } = useAuthLogin();
+    const { submit, errors, register, isSubmitting } = useAuthLogin();
     const [showPassword, setShowPassword] = useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -54,10 +55,16 @@ function LoginForm() {
                                         {showPassword ? <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
-                            } {...register('password')}
-                        />
+                            } {...register('password')} />
                     </FormControl>
-                    <Button type='submit' sx={{ m: 1, width: '100%' }} variant="contained">Sign In</Button>
+                    <Button
+                        type='submit'
+                        disabled={isSubmitting}
+                        sx={{ m: 1, width: '100%' }} variant="contained">
+                        {isSubmitting
+                            ? (<Progress />)
+                            : ('Sign In')}
+                    </Button>
                     <Typography>
                         Don't have an account? <ButtonLink to="/register">Sign Up</ButtonLink>
                     </Typography>

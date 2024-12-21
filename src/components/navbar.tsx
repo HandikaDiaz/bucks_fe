@@ -47,7 +47,7 @@ function Navbar() {
                 <Toolbar disableGutters>
                     <img
                         width={50}
-                        src='../../public/logo.png' />
+                        src='https://res.cloudinary.com/dqvskcnje/image/upload/v1734618334/rtubjrabjj6iago28yxm.png' />
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"

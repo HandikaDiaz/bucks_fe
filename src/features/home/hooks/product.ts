@@ -49,7 +49,7 @@ export function useCreateProduct() {
         register,
         handleSubmit,
         reset,
-        formState: { errors, isLoading },
+        formState: { errors, isLoading, isSubmitting },
     } = useForm<ProductSchema>({
         resolver: zodResolver(productSchema),
     });
@@ -107,7 +107,8 @@ export function useCreateProduct() {
         register,
         errors,
         submit,
-        isLoading
+        isLoading,
+        isSubmitting
     }
 }
 
@@ -117,7 +118,7 @@ export function useUpdateProduct(id: number) {
         handleSubmit,
         setValue,
         reset,
-        formState: { errors, isLoading },
+        formState: { errors, isLoading, isSubmitting },
     } = useForm<ProductSchema>({
         resolver: zodResolver(productSchema),
     });
@@ -175,7 +176,8 @@ export function useUpdateProduct(id: number) {
         errors,
         submit,
         isLoading,
-        setValue
+        setValue,
+        isSubmitting
     }
 }
 

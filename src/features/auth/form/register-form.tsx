@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { ButtonLink } from '../../../components/button-link';
 import { useAuthRegister } from '../hooks/register';
 import { toast } from 'react-toastify';
+import Progress from '../../../components/progress';
 
 function RegisterForm() {
-    const { submit, errors, register, setValue } = useAuthRegister();
+    const { submit, errors, register, setValue, isSubmitting } = useAuthRegister();
     const [showPassword, setShowPassword] = useState(false);
     const [gender, setGender] = useState<string>('');
 
@@ -84,7 +85,14 @@ function RegisterForm() {
                         <Checkbox required />
                         Accept Terms & Conditions
                     </Typography>
-                    <Button type='submit' sx={{ m: 1, width: '100%' }} variant="contained">Sign Up</Button>
+                    <Button
+                        type='submit'
+                        disabled={isSubmitting}
+                        sx={{ m: 1, width: '100%' }} variant="contained">
+                        {isSubmitting
+                            ? (<Progress />)
+                            : ('Sign Up')}
+                    </Button>
                     <Typography>
                         Already have an account? <ButtonLink to="/login">Sign In</ButtonLink>
                     </Typography>

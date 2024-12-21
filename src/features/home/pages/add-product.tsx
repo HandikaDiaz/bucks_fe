@@ -3,7 +3,7 @@ import Progress from "../../../components/progress";
 import { useCreateProduct } from "../hooks/product";
 
 function AddProduct() {
-    const { submit, errors, isLoading, register } = useCreateProduct();
+    const { submit, errors, isLoading, register, isSubmitting } = useCreateProduct();
 
     if (isLoading) {
         return <Progress />;
@@ -38,8 +38,13 @@ function AddProduct() {
                     <Typography sx={{ p: .5, fontSize: '13px', fontWeight: 'bold' }}>Upload Image</Typography>
                     <Input {...register('image')} sx={{ p: 0.2, display: 'none' }} type='file' />
                 </Button>
-                <Button type="submit" sx={{ borderRadius: '5px', bgcolor: '#855738', color: 'white', mt: 4 }}>
-                    Add Product
+                <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    sx={{ borderRadius: '5px', bgcolor: '#855738', color: 'white', mt: 4 }}>
+                    {isSubmitting
+                        ? (<Progress />)
+                        : ('Add Product')}
                 </Button>
             </Stack>
         </form>

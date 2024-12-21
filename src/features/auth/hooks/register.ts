@@ -14,7 +14,7 @@ export function useAuthRegister() {
         register,
         handleSubmit,
         setValue,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<RegisterSchema>({
         resolver: zodResolver(registerSchema),
     });
@@ -59,6 +59,7 @@ export function useAuthRegister() {
         submit,
         register,
         errors,
-        setValue
+        setValue,
+        isSubmitting
     }
 }
