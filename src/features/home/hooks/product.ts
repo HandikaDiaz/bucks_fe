@@ -130,7 +130,7 @@ export function useUpdateProduct(id: number) {
         formData.append('productName', data.productName);
         formData.append('amount', data.amount.toString());
         formData.append('description', data.description);
-        if (data.image) {
+        if (data.image && data.image.length > 0) {
             formData.append('image', data.image[0]);
         }
 
@@ -151,8 +151,8 @@ export function useUpdateProduct(id: number) {
     async function onsubmit(data: ProductDTO) {
         try {
             await updateProductAsync(data);
-            toast.success("Product updated successful!");
             navigate('/');
+            toast.success("Product updated successful!");
             queryClient.invalidateQueries({ queryKey: ['products'] });
             reset();
         } catch (error) {
